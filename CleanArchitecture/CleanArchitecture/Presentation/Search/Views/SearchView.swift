@@ -51,5 +51,16 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView(viewModel: .init(state: .init()))
+    let apiDataNetworkConfig = ApiDataNetworkConfig(baseURL: URL(string: "https://api.github.com/")!)
+    let networkService = DefaultNetworkService(config: apiDataNetworkConfig)
+    let dataTransferService = DefaultDataTransferService(networkService: networkService)
+    let reposRepository = DefaultRepoRepository(dataTransferService: dataTransferService)
+    let searchReposUseCase = DefaultSearchReposUseCase(reposRepository: reposRepository)
+    
+    return SearchView(
+        viewModel: .init(
+            searchReposUseCase: searchReposUseCase,
+            state: .init()
+        )
+    )
 }

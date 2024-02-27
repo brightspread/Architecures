@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct GithubApp: App {
+    let appDIContainer = AppDIContainer()
+    var appFlowCoordinator: AppFlowCoordinator?
+    
+    init() {
+        appFlowCoordinator = AppFlowCoordinator(appDIContainer: appDIContainer)
+    }
+    
     var body: some Scene {
-        WindowGroup {
-            SearchView(viewModel: .init(state: .init()))
+        return WindowGroup {
+            appFlowCoordinator?.buildStartView()
+            //SearchView(viewModel: .init(state: .init()))
         }
     }
 }

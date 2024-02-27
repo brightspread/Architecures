@@ -14,20 +14,35 @@ extension SearchViewState {
 
 enum SearchViewAction {
     case queryUpdated(String)
+    case searchRepo(String)
 }
 
 final class SearchViewModel: ViewModel {
+    private let searchReposUseCase: SearchReposUseCase
     
     @Published var state: SearchViewState
     
-    init(state: SearchViewState) {
+    private var reposLoadTask: Cancellable? { willSet { reposLoadTask?.cancel() } }
+
+    
+    init(searchReposUseCase: SearchReposUseCase,
+         state: SearchViewState) {
+        self.searchReposUseCase = searchReposUseCase
         self.state = state
     }
+    
     
     func action(_ action: SearchViewAction) {
         switch action {
             case .queryUpdated(let query):
                 state.updateQuery(query)
+                self.action(.searchRepo(state.query))
+            case .searchRepo(let query):
+                reposLoadTask = searchReposUseCase.execute(
+                    requestValue: .init(query: query)
+                ) { [weak self] result in
+                    print(result)
+                }
         }
     }
 }

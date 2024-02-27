@@ -8,7 +8,7 @@
 import Foundation
 
 final class AppConfiguration {
-//    lazy var apiKey: String = {
-//        
-//    }()
+    lazy var apiBaseURL: String = {
+        return "https://api.github.com/"
+    }()
 }
