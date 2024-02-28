@@ -16,37 +16,15 @@ struct SearchView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                searchBar
-                // Searched Lists
-                
+                SearchBar(query: $query) {
+                    viewModel.action(.queryUpdated($0))
+                }
+                SearchResultList(repos: viewModel.state.repos)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .navigationTitle("Github Search")
             .navigationBarTitleDisplayMode(.inline)
         }
-    }
-    
-    private var searchBar: some View {
-        return HStack {
-            HStack {
-                Image(systemName: "magnifyingglass")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                    
-                TextField("Search Repositories", text: $query)
-                    .onSubmit {
-                        viewModel.action(.queryUpdated(query))
-                    }
-            }
-            
-            Button {
-                viewModel.action(.queryUpdated(query))
-            } label: {
-                Text("Search")
-            }
-        }
-        .padding()
-        .frame(maxWidth: .infinity)
     }
 }
 

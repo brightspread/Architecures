@@ -19,7 +19,7 @@ struct RepoResult: Codable {
     }
 }
 
-struct Repo: Codable {
+struct Repo: Codable, Identifiable {
     let id: Int
     let fullName: String
     let htmlURL: String

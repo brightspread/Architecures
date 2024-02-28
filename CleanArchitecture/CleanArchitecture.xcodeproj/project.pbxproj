@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B318054C2B8F1F83000F6458 /* SearchResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B318054B2B8F1F83000F6458 /* SearchResultList.swift */; };
+		B318054E2B8F1FDF000F6458 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B318054D2B8F1FDF000F6458 /* SearchBar.swift */; };
 		B3F5378C2B8E101300DEDCED /* GithubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F5378B2B8E101300DEDCED /* GithubApp.swift */; };
 		B3F537902B8E101400DEDCED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3F5378F2B8E101400DEDCED /* Assets.xcassets */; };
 		B3F537932B8E101400DEDCED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3F537922B8E101400DEDCED /* Preview Assets.xcassets */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B318054B2B8F1F83000F6458 /* SearchResultList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultList.swift; sourceTree = "<group>"; };
+		B318054D2B8F1FDF000F6458 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		B3F537882B8E101300DEDCED /* CleanArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3F5378B2B8E101300DEDCED /* GithubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubApp.swift; sourceTree = "<group>"; };
 		B3F5378F2B8E101400DEDCED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,6 +72,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B318054A2B8F1F77000F6458 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				B318054B2B8F1F83000F6458 /* SearchResultList.swift */,
+				B318054D2B8F1FDF000F6458 /* SearchBar.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		B3F5377F2B8E101300DEDCED = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +246,7 @@
 		B3F537AF2B8E177E00DEDCED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B318054A2B8F1F77000F6458 /* Subviews */,
 				B3F537AC2B8E173F00DEDCED /* SearchView.swift */,
 			);
 			path = Views;
@@ -374,7 +388,9 @@
 				B3F537AD2B8E173F00DEDCED /* SearchView.swift in Sources */,
 				B3F537C42B8E22F300DEDCED /* DataTransferService.swift in Sources */,
 				B3F537A32B8E138B00DEDCED /* APIEndpoints.swift in Sources */,
+				B318054C2B8F1F83000F6458 /* SearchResultList.swift in Sources */,
 				B3F537BF2B8E20B400DEDCED /* RepoRepository.swift in Sources */,
+				B318054E2B8F1FDF000F6458 /* SearchBar.swift in Sources */,
 				B3F537B82B8E1ED400DEDCED /* Repo.swift in Sources */,
 				B3F537C12B8E22BD00DEDCED /* SearchSceneDIContainer.swift in Sources */,
 				B3F537C82B8E241900DEDCED /* NetworkService.swift in Sources */,

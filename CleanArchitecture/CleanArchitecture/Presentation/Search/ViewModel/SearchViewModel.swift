@@ -10,6 +10,7 @@ import Combine
 
 extension SearchViewState {
     var query: String { return _query }
+    var repos: [Repo] { return _repos }
 }
 
 enum SearchViewAction {
@@ -41,8 +42,20 @@ final class SearchViewModel: ViewModel {
                 reposLoadTask = searchReposUseCase.execute(
                     requestValue: .init(query: query)
                 ) { [weak self] result in
-                    print(result)
+                    guard let self else { return }
+                    self.reduceFetchedRepos(with: result)
                 }
+        }
+    }
+    
+    private func reduceFetchedRepos(with result: Result<RepoResult, Error>) {
+        Task { @MainActor in
+            switch result {
+                case .success(let result):
+                    self.state.changeRepos(result.items)
+                case .failure(let error):
+                    print(error)
+            }
         }
     }
 }
@@ -51,8 +64,13 @@ fileprivate extension SearchViewState {
     mutating func updateQuery(_ query: String) {
         self._query = query
     }
+    
+    mutating func changeRepos(_ repos: [Repo]) {
+        self._repos = repos
+    }
 }
 
 struct SearchViewState {
     private var _query: String = ""
+    private var _repos: [Repo] = []
 }
