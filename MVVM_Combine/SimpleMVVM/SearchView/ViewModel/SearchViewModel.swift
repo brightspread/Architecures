@@ -10,7 +10,7 @@ import Combine
 
 final class SearchViewModel: ObservableObject {
     @Published var query: String = ""
-    @Published var repos: [Repo] = []
+    @Published private(set) var repos: [Repo] = []
     
     private(set) var bag: Set<AnyCancellable> = []
     private var searchCancellable: Cancellable? {

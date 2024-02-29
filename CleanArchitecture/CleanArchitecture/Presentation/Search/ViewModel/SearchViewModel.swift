@@ -8,9 +8,9 @@
 import SwiftUI
 import Combine
 
-extension SearchViewState {
-    var query: String { return _query }
-    var repos: [Repo] { return _repos }
+struct SearchViewState {
+    fileprivate(set) var query: String = ""
+    fileprivate(set) var repos: [Repo] = []
 }
 
 enum SearchViewAction {
@@ -36,7 +36,7 @@ final class SearchViewModel: ViewModel {
     func action(_ action: SearchViewAction) {
         switch action {
             case .queryUpdated(let query):
-                state.updateQuery(query)
+                state.query = query
                 self.action(.searchRepo(state.query))
             case .searchRepo(let query):
                 reposLoadTask = searchReposUseCase.execute(
@@ -52,25 +52,10 @@ final class SearchViewModel: ViewModel {
         Task { @MainActor in
             switch result {
                 case .success(let result):
-                    self.state.changeRepos(result.items)
+                    state.repos = result.items
                 case .failure(let error):
                     print(error)
             }
         }
     }
-}
-
-fileprivate extension SearchViewState {
-    mutating func updateQuery(_ query: String) {
-        self._query = query
-    }
-    
-    mutating func changeRepos(_ repos: [Repo]) {
-        self._repos = repos
-    }
-}
-
-struct SearchViewState {
-    private var _query: String = ""
-    private var _repos: [Repo] = []
 }

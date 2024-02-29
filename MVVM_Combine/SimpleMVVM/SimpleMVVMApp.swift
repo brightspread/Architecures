@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct SimpleMVVMApp: App {
+    @StateObject private var searchViewModel = SearchViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            SearchView()
+            SearchView(viewModel: searchViewModel)
         }
     }
 }

@@ -33,7 +33,7 @@ final class SearchSceneDIContainer: SearchFlowCoordinatorDependencies {
     func makeSearchView() -> SearchView {
         return SearchView(
             viewModel: .init(
-                searchReposUseCase: makeSearchRepoUseCase(), 
+                searchReposUseCase: self.makeSearchRepoUseCase(), 
                 state: .init()
             )
         )
